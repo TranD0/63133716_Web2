@@ -29,34 +29,37 @@ public class AboutMe extends HttpServlet {
     	response.setContentType("text/html");
     	response.setCharacterEncoding("utf-8");
     	PrintWriter traVe = response.getWriter();
-    	traVe.append("Bạn vừa gửi yêu cầu dạng GET, đây là đáp ứng của tôi");
-    	String noiDungHTML =" <form method= POST action=\"/BaitapWeb/AboutMe\""
-    			+" <label>Họ:</label>"
-    			+" <input type=\"text\" name=\"fname\" ><br>\r\n"
-    			+" <label>Tên:</label>"
-    			+" <input type=\"text\" name=\"lname\" ><br>"
-    			+" <label>Mã số sinh viên:</label>"
-    			+" <input type=\"text\" name=\"mssv\" ><br>"
-    			+" <input type=\"submit\" value=\"gửi đi\">"
-    			+ "<form>";
+    	String noiDungHTML ="<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:14px;margin-left:50px;\">\r\n"
+    			+ "    <tr>\r\n"
+    			+ "        <td>\r\n"
+    			+ "            <table cellpadding=\"2\" cellspacing=\"10\">\r\n"
+    			+ "                <caption><b>THÔNG TIN CHI TIẾT</b></caption>\r\n"
+    			+ "                <tr>\r\n"
+    			+ "                    <td>Mã số sinh viên:</td>\r\n"
+    			+ "                    <td>63133716</td>\r\n"
+    			+ "                </tr>\r\n"
+    			+ "                <tr>\r\n"
+    			+ "                    <td>Họ và tên:</td>\r\n"
+    			+ "                    <td>Trần Thái Ngọc Đô</td>\r\n"
+    			+ "                </tr>\r\n"   		  
+    			+ "                <tr>\r\n"
+    			+ "                    <td>Giới tính:</td>\r\n"	
+    			+ "                    <td>Nam</td>\r\n"	
+    			+ "                <tr>\r\n"
+    			+ "                    <td>Ngày sinh:</td>\r\n"
+    			+ "                    <td>18/08/2003</td>\r\n"
+    			+ "                </tr>\r\n"
+    			+ "                <tr>\r\n"
+    			+ "                    <td>Địa chỉ:</td>\r\n"
+    			+ "                    <td>Nha Trang</td>\r\n"
+    			+ "                </tr>\r\n"
+    			+ "            </table>\r\n"
+    			+ "        </td>\r\n"
+    			+ "    </tr>\r\n"
+    			+ "</table>";
     	traVe.append(noiDungHTML);
     }
     
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.setContentType("text/html");
-    	response.setCharacterEncoding("utf-8");
-    	String value1 = request.getParameter("fname");
-    	String value2= request.getParameter("lname");
-    	String value3= request.getParameter("mssv");
-    	PrintWriter traVe = response.getWriter();
-    	traVe.append("thông tin của bạn");
-    	traVe.append("Họ bạn là: ");
-    	traVe.append(value1);
-    	traVe.append("\n Tên bạn là:");
-    	traVe.append(value2);
-    	traVe.append("\n Mã số sinh viên: ");
-    	traVe.append(value3);
-	}
+
 
 }
