@@ -16,6 +16,6 @@
  </servlet>    
 <servlet-mapping>        
     <servlet-name>SpingMVC_ViDu_Bai1_Maven</servlet-name>       
-     <url-pattern>*.html</url-pattern>    
+     <url-pattern>/</url-pattern>    
 </servlet-mapping>
 </web-app>

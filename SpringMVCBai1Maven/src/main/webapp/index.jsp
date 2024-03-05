@@ -1,3 +1,5 @@
+<%@ page isELIgnored="false" %>
+<!DOCTYPE html>
 <html>
 <body>
 <h2>Hello World!</h2>
