@@ -1,11 +1,74 @@
-<!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
+    <!-- Link CSS của Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+<style>
+  .carousel-item img {
+    width: 100%; 
+    height: 300px; 
+    object-fit: cover; 
+  }
+</style>
 <body>
-    <h1>Đây là trang chủ</h1>
-    <!-- Bạn có thể thêm nội dung khác cho trang index tại đây -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Tìm kiếm</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Thêm</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Danh sách</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Carousel -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/images/ntu1.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/ntu.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/ntu2.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <img src="/images/logo.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Trần Thái Ngọc Đô</h5>
+          <p class="card-text">63CNTT-CLC</p>
+       	<p class="card-text">Khoa công nghệ thông tin</p>
+       	          <p class="card-text">Trường NTU</p>
+        </div>
+      </div>
+    </div>
+   
+
+<!-- Link JS của Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

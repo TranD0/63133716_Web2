@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Student List</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Mã đồ uống </th>
+				<th>Tên Đồ uống </th>
+				<th>Số lượng </th>
+				<th>Đơn giá </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="du : ${maDoUong}">
+				<td th:text="${du.tenDoUong}" />
+				<td th:text="${du.soLuong}" />
+				<td th:text="${du.donGia}" />
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
