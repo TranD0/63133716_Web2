@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Student List</h1>
+	<h1>Danh sách đồ uống</h1>
 	<table border="1">
 		<thead>
 			<tr>
@@ -16,7 +16,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="du : ${maDoUong}">
+			<tr th:each="du : ${dsDoUong}">
+			<td th:text="${du.maDoUong}" />
 				<td th:text="${du.tenDoUong}" />
 				<td th:text="${du.soLuong}" />
 				<td th:text="${du.donGia}" />

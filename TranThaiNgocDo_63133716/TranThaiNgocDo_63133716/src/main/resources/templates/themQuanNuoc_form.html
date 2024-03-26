@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Thêm mới quán nước</title>
@@ -7,7 +7,7 @@
 <body>
 <div align="center">
     <h1>Thêm mới đồ uống</h1>
-    <form action="#" th:action="@{/themMoiQN}" method="post" th:object="${qnDTO}">
+    <form action="#" th:action="@{/themMoiQN}" method="get" th:object="${qnDTO}">
         <label>Mã đồ uống:</label>
         <input type="text" th:field="*{maDoUong}" /><br/>
  
