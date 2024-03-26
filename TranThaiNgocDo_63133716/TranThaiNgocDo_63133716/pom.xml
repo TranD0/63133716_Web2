@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>thiGK.ntu63133716</groupId>
-	<artifactId>TranThaiNgocDo_63133716</artifactId>
+	<artifactId>TranThaiNgocdo_63133716</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>TranThaiNgocDo_63133716</name>
+	<name>TranThaiNgocdo_63133716</name>
 	<description>thi giua ki</description>
 	<properties>
 		<java.version>17</java.version>
