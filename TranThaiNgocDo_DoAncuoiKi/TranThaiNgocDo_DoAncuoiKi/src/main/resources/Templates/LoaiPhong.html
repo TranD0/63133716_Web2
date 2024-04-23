@@ -8,24 +8,42 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div th:replace="~{fragments/headerfile :: header}">
+    </div>
+    <div class="container">
+        <div class="row mb-3 mt-3">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary mr-2 mb-2" data-toggle="modal" data-target="#addModal">Thêm</button>
+                <button type="button" class="btn btn-warning mr-2 mb-2" data-toggle="modal" data-target="#editModal">Sửa</button>
+                <button type="button" class="btn btn-danger mb-2" data-toggle="modal" data-target="#deleteModal">Xóa</button>
+            </div>
+        </div>
+        
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Mã loại phòng</th>
+                    <th scope="col">Tên loại phòng</th>
+                    <th scope="col">Giá tiền</th>
+                    <th scope="col">Sức chứa</th>
+                    <th scope="col">Mô tả</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="lp : ${dsLoaiPhong}">
+                    <td th:text="${lp != null ? lp.MaLP : ''}" />
+                    <td th:text="${lp.TenLP}" />
+                    <td th:text="${lp.Giatien}"  />
+                    <td th:text="${lp.Succhua}"  />
+                    <td th:text="${lp.Mota}"  />
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-<table border="1">
-		<thead>
-			<tr>
-				<th>Mã KH</th>
-				<th>Tên KH </th>
-				<th>Địa chỉ </th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="lp : ${dsLoaiPhong}">
-				<td th:text="${lp != null ? lp.MaLP : ''}" />
-				<td th:text="${lp.TenLP}" />
-				<td th:text="${lp.GiaTien}" />
-			</tr>
-		</tbody>
-	</table>
 
+  
+<div th:replace="~{fragments/footer :: footer}">Footer ở đây</div>
 <!-- Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
