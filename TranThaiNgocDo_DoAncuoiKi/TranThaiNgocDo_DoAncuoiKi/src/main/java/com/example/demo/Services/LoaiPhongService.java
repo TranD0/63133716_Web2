@@ -11,4 +11,7 @@ import com.example.demo.Models.LoaiPhong;
 public interface LoaiPhongService {
 	public List<LoaiPhong> getAllLoaiPhong();
 	public Optional<LoaiPhong> getLoaiPhongBYID(int MaLP);
+	void addLoaiPhong(LoaiPhong loaiphong);
+	void fixLoaiPhong(int MaLP);
+    void deleteLoaiPhong(int MaLP);
 }

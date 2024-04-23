@@ -15,7 +15,7 @@ public class LoaiPhongServiceImpl implements LoaiPhongService {
 	
 	@Override
 	public List<LoaiPhong> getAllLoaiPhong() {
-		// TODO Auto-generated method stub
+		
 		return loaiPhongReposity.findAll();
 	}
 
@@ -23,6 +23,24 @@ public class LoaiPhongServiceImpl implements LoaiPhongService {
 	public Optional<LoaiPhong> getLoaiPhongBYID(int MaLP) {
 		// TODO Auto-generated method stub
 		return loaiPhongReposity.findById(MaLP);
+	}
+
+	@Override
+	public void addLoaiPhong(LoaiPhong loaiphong) {
+		loaiPhongReposity.save(loaiphong);
+		
+	}
+
+	@Override
+	public void fixLoaiPhong(int MaLP) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteLoaiPhong(int MaLP) {
+		loaiPhongReposity.deleteById(MaLP);
+		
 	}
 
 }
