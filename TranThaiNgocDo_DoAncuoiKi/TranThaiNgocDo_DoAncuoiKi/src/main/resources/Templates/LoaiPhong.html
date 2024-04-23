@@ -14,8 +14,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-md-12">
                 <button type="button" class="btn btn-primary mr-2 mb-2" data-toggle="modal" data-target="#addModal">Thêm</button>
-                <button type="button" class="btn btn-warning mr-2 mb-2" data-toggle="modal" data-target="#editModal">Sửa</button>
-                <button type="button" class="btn btn-danger mb-2" data-toggle="modal" data-target="#deleteModal">Xóa</button>
+            
             </div>
         </div>
         
@@ -27,6 +26,7 @@
                     <th scope="col">Giá tiền</th>
                     <th scope="col">Sức chứa</th>
                     <th scope="col">Mô tả</th>
+                      <th scope="col">Chức năng</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +36,10 @@
                     <td th:text="${lp.Giatien}"  />
                     <td th:text="${lp.Succhua}"  />
                     <td th:text="${lp.Mota}"  />
+                    <td>
+                        <button type="button" class="btn btn-warning mr-2 mb-2" data-toggle="modal" data-target="#editModal">Sửa</button>
+                <button type="button" class="btn btn-danger mb-2" data-toggle="modal" data-target="#deleteModal">Xóa</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
