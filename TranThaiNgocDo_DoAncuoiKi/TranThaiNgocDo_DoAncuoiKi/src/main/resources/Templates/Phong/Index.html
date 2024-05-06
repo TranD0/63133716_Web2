@@ -15,6 +15,7 @@
 
     <div class="container">
         <h2 class=" mb-3">Phòng</h2>
+        <div th:replace="~{fragments/search ::div}"></div>
         <div class="row mb-3 mt-3">
             <div class="col-md-12">
                 <a href="/Phong/Them"class="btn btn-primary mr-2 mb-2">Thêm</a>
@@ -35,22 +36,22 @@
             </thead>
             <tbody>
                 <tr th:each="p : ${phong}">
-                    <td th:text="${p.maP}" />
-                    <td th:text="${p.soP}" />
-                    <td th:text="${p.malp.tenLP}" />
+                    <td th:text="${p.maP}" ></td>
+                    <td th:text="${p.soP}" ></td>
+                    <td th:text="${p.malp.tenLP}" ></td>
                     <td>
                         <span th:if="${p.tinhTrang}" class="bg-success text-white">Trống</span>
                         <span th:if="${not p.tinhTrang}"class="bg-danger text-white">đang dùng</span>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-warning mr-2 mb-2" data-toggle="modal" data-target="#editModal">Sửa</button>
-                <button type="button" class="btn btn-danger mb-2" data-toggle="modal" data-target="#deleteModal">Xóa</button>
+                        <a type="button" class="btn btn-warning mr-2 mb-2" th:href="@{'/Phong/Sua/'+${p.maP}}">Sửa</a>
+                        <a type="button" class="btn btn-danger mb-2"  th:href="@{'/Phong/Xoa/' + ${p.maP}}" onclick="return confirm('Bạn chắc chắn muốn xóa chứ?')">Xóa</a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-
+    <div th:replace="~{fragments/Page :: nav}"></div>
 
   
 <div th:replace="~{fragments/footer :: footer}">Footer ở đây</div>

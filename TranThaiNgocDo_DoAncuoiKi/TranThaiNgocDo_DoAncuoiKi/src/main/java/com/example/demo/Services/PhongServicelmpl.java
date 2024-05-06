@@ -2,13 +2,13 @@ package com.example.demo.Services;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.Models.Phong;
-
 import com.example.demo.Repositories.PhongRepository;
 
 @Service
@@ -21,8 +21,11 @@ public class PhongServicelmpl implements PhongService {
 	}
 
 	@Override
-	public Optional<Phong> getPhongBYID(int MaPhong) {
-		return PhongReposity.findById(MaPhong);
+	public Phong getPhongBYID(int MaP) {
+		Optional<Phong> result=PhongReposity.findById(MaP);
+		if(result.isPresent())
+		return result.get();
+		return null;
 	}
 
 	@Override
@@ -33,27 +36,31 @@ public class PhongServicelmpl implements PhongService {
 	}
 
 	@Override
-	public void deletePhong(int MaPhong) {
-		PhongReposity.deleteById(MaPhong);
+	public void deletePhong(int MaP) {
+		PhongReposity.deleteById(MaP);
 		
 	}
 
 	@Override
 	public Page<Phong> findAll(Integer soTrang) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+		Pageable pageable = PageRequest.of(soTrang - 1, 2);
+       return this.PhongReposity.findAll(pageable);
 	}
-
+	
 	@Override
 	public List<Phong> searchP(String tuKhoa) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'searchP'");
+		return this.PhongReposity.searchP(tuKhoa);	
 	}
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public Page<Phong> searchP(String tuKhoa, Integer soTrang) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'searchP'");
+		@SuppressWarnings("rawtypes")
+		List list = this.searchP(tuKhoa);
+		Pageable pageable = PageRequest.of(soTrang - 1, 2);
+		Integer batDau=(int) pageable.getOffset();
+		Integer ketThuc=((int) ((pageable.getOffset()+pageable.getPageSize())>list.size() ? list.size()  : pageable.getOffset()+ pageable.getPageSize()));
+		list=list.subList(batDau,ketThuc);
+		return new PageImpl<Phong>(list,pageable,this.searchP(tuKhoa).size());
 	}
 
 }

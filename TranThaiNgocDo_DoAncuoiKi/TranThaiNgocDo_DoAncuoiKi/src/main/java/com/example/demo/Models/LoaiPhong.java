@@ -28,7 +28,6 @@ public class LoaiPhong {
 
 	@Column(name = "mota", length = 100, nullable = false)
 	private String moTa;
-
 	//
 	public LoaiPhong() {
 	}
