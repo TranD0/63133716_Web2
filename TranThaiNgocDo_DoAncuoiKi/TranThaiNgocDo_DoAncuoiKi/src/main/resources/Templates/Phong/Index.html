@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thông tin Loại Phòng</title>
+  <title>Thông tin Phòng</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/script/sidebar.js"></script>
 </head>
 <body>
-<div th:replace="~{fragments/headerfile :: header}">
-    </div>
+     <div th:replace="~{fragments/sidebar :: nav}"></div>
+
     <div class="container">
+        <h2 class=" mb-3">Phòng</h2>
         <div class="row mb-3 mt-3">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary mr-2 mb-2" data-toggle="modal" data-target="#addModal">Thêm</button>
+                <a href="/Phong/Them"class="btn btn-primary mr-2 mb-2">Thêm</a>
             
             </div>
         </div>
@@ -21,21 +25,23 @@
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Mã loại phòng</th>
-                    <th scope="col">Tên loại phòng</th>
-                    <th scope="col">Giá tiền</th>
-                    <th scope="col">Sức chứa</th>
-                    <th scope="col">Mô tả</th>
-                      <th scope="col">Chức năng</th>
+                    <th scope="col">Mã  phòng</th>
+                    <th scope="col">Tên phòng</th>
+                    <th scope="col">loại Phòng</th>
+                    <th scope="col">Tình trạng</th>
+                    <th scope="col">Chức năng</th>
+                
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="lp : ${dsLoaiPhong}">
-                    <td th:text="${lp != null ? lp.MaLP : ''}" />
-                    <td th:text="${lp.TenLP}" />
-                    <td th:text="${lp.Giatien}"  />
-                    <td th:text="${lp.Succhua}"  />
-                    <td th:text="${lp.Mota}"  />
+                <tr th:each="p : ${phong}">
+                    <td th:text="${p.maP}" />
+                    <td th:text="${p.soP}" />
+                    <td th:text="${p.malp.tenLP}" />
+                    <td>
+                        <span th:if="${p.tinhTrang}" class="bg-success text-white">Trống</span>
+                        <span th:if="${not p.tinhTrang}"class="bg-danger text-white">đang dùng</span>
+                    </td>
                     <td>
                         <button type="button" class="btn btn-warning mr-2 mb-2" data-toggle="modal" data-target="#editModal">Sửa</button>
                 <button type="button" class="btn btn-danger mb-2" data-toggle="modal" data-target="#deleteModal">Xóa</button>

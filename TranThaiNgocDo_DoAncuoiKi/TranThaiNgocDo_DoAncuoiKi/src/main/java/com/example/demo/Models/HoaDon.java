@@ -1,97 +1,104 @@
 package com.example.demo.Models;
-
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.security.Timestamp;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "hoadon") 
+@Table(name = "hoadon")
 public class HoaDon {
-	 	@Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "MaHD")
-	    private int MaHD;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "mahd")
+    private int maHD;
+
+    @ManyToOne
+    @JoinColumn(name = "madp")
+    private DatPhong madp;
 	    
-	    @Column(name = "MaDP")
-	    private int MaDP;
+	@Column(name = "tongtien",precision = 10, scale = 2, nullable = false)
+	private BigDecimal tongTien;
 	    
-	    @Column(name = "TongTien",precision = 10, scale = 2)
-	    private BigDecimal TongTien;
+	@ManyToOne
+	@JoinColumn(name = "manv", nullable = false)
+	private NhanVien manv;
+	
 	    
-	    @Column(name = "MaNV")
-	    private int MaNV;
+	@Column(name = "canhtra", length = 50, nullable = false)
+    private String canhTra;
 	    
-	    @Column(name = "CachTra")
-	    private String CachTra;
-	    
-	    @Column(name = "ThoiGianTao")
-	    private LocalDateTime ThoiGianTao;
-	    
+	@Column(name = "thoigiantao", nullable = false)
+	private Timestamp ThoiGianTao;
 	    // Constructors
 	    public HoaDon() {
 	    }
 	    
-	    public HoaDon(int maDP,BigDecimal tongTien, int maNV, String cachTra, LocalDateTime thoiGianTao) {
-	        this.MaDP = maDP;
-	        this.TongTien = tongTien;
-	        this.MaNV = maNV;
-	        this.CachTra = cachTra;
+	    public HoaDon(int mahd,DatPhong maDP,BigDecimal tongTien, NhanVien maNV, String cachTra, Timestamp thoiGianTao) {
+	        this.maHD=mahd;
+			this.madp = maDP;
+	        this.tongTien = tongTien;
+	        this.manv= maNV;
+	        this.canhTra= cachTra;
 	        this.ThoiGianTao = thoiGianTao;
 	    }
 	    //
 
 		public int getMaHD() {
-			return MaHD;
+			return maHD;
 		}
 
 		public void setMaHD(int maHD) {
-			MaHD = maHD;
+			this.maHD = maHD;
 		}
 
-		public int getMaDP() {
-			return MaDP;
+		public DatPhong getMadp() {
+			return madp;
 		}
 
-		public void setMaDP(int maDP) {
-			MaDP = maDP;
+		public void setMadp(DatPhong madp) {
+			this.madp = madp;
 		}
 
 		public BigDecimal getTongTien() {
-			return TongTien;
+			return tongTien;
 		}
 
 		public void setTongTien(BigDecimal tongTien) {
-			TongTien = tongTien;
+			this.tongTien = tongTien;
 		}
 
-		public int getMaNV() {
-			return MaNV;
+		public NhanVien getManv() {
+			return manv;
 		}
 
-		public void setMaNV(int maNV) {
-			MaNV = maNV;
+		public void setManv(NhanVien manv) {
+			this.manv = manv;
 		}
 
-		public String getCachTra() {
-			return CachTra;
+		public String getCanhTra() {
+			return canhTra;
 		}
 
-		public void setCachTra(String cachTra) {
-			CachTra = cachTra;
+		public void setCanhTra(String canhTra) {
+			this.canhTra = canhTra;
 		}
 
-		public LocalDateTime getThoiGianTao() {
+		public Timestamp getThoiGianTao() {
 			return ThoiGianTao;
 		}
 
-		public void setThoiGianTao(LocalDateTime thoiGianTao) {
+		public void setThoiGianTao(Timestamp thoiGianTao) {
 			ThoiGianTao = thoiGianTao;
 		}
-	    
+
+		
 }

@@ -1,0 +1,155 @@
+body {
+    font-family: "Lato", sans-serif;
+    
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    border: none;
+    position: fixed;
+    z-index: 2;
+    top: 10px;
+    left: 10px;
+    height: 40px;
+    width: 40px;
+    line-height: 40px; /* Đảm bảo nút có cùng chiều cao với nội dung (40px) */
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+    margin-left: 40px;
+}
+.user-profile {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Ảnh nhân viên */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Hiển thị danh sách thông tin nhân viên */
+.user-profile {
+    position: relative;
+    display: inline-block; 
+    margin-left:20px ;
+}
+
+/* Hiển thị danh sách thông tin nhân viên */
+.user-info {
+    display: none;
+    position: absolute;
+    background-color: rgb(0, 0, 0); /* Màu trắng cho nền danh sách */
+    width: 150px;
+    font-size: small;
+    color: #ffffff;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%; 
+    right: 0; 
+    margin-left:20px ;
+    border-top: 2px solid #000; /* Đường viền trên để tạo phần tách giữa ô hiển thị và danh sách */
+}
+.employee-name{
+    color: #ffffff;
+}
+.user-info ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: white; /* Thiết lập màu chữ cho toàn bộ danh sách */
+}
+
+.user-info ul li {
+    padding: 10px;
+    font-size: 14px; /* Chỉnh kích thước chữ cho từng mục trong danh sách */
+}
+/* Khi hiển thị danh sách */
+.user-info.active {
+    display: block;
+}
+.chunho{
+    font-size: 12px;
+}
+
+.pagination .page-link {
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.pagination .page-link:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+}
+.search-box {
+    background-color: #000; /* Màu đen */
+    border: none; /* Không có viền */
+  }
+
+  /* CSS tùy chỉnh cho phần text input */
+  .form-control {
+    color: #000; 
+    background-color: #fff; 
+    border: #000 solid 1px;
+  }
+  .form-control:focus {
+    box-shadow: none; /* Không có shadow */
+  }

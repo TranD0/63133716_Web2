@@ -7,63 +7,58 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
 @Entity
-@Table(name = "phong") 
+@Table(name = "phong")
 public class Phong {
 	@Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "MaPhong")    
-	private int MaPhong;
-	
-	@Column(name="SoPhong" )
-	private String SoPhong;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "map")
+    private int maP;
+
+    @Column(name = "sop", length = 50, nullable = false)
+    private String soP;
 	
 	@ManyToOne
-    @JoinColumn(name = "MaLP")
-    private LoaiPhong MaLP;
-	
-	@Column(name = "TinhTrang") 
-	private boolean TinhTrang;
+    @JoinColumn(name = "malp", nullable = false)
+    private LoaiPhong malp;
+
+    @Column(name = "tinhtrang")
+    private boolean tinhTrang;
 	
 	//
 	public Phong() {}
 	public Phong(int MaPhong, String SoPhong, LoaiPhong MaLP, boolean TinhTrang) {
-		this.MaPhong=MaPhong;
-		this.SoPhong=SoPhong;
-		this.MaLP=MaLP;
-		this.TinhTrang=TinhTrang;
+		this.maP=MaPhong;
+		this.soP=SoPhong;
+		this.malp=MaLP;
+		this.tinhTrang=TinhTrang;
 	}
 	//
-
-	public int getMaPhong() {
-		return MaPhong;
+	public int getMaP() {
+		return maP;
 	}
-
-	public void setMaPhong(int maPhong) {
-		MaPhong = maPhong;
+	public void setMaP(int maP) {
+		this.maP = maP;
 	}
-
-	public String getSoPhong() {
-		return SoPhong;
+	public String getSoP() {
+		return soP;
 	}
-
-	public void setSoPhong(String soPhong) {
-		SoPhong = soPhong;
+	public void setSoP(String soP) {
+		this.soP = soP;
+	}
+	public LoaiPhong getMalp() {
+		return malp;
+	}
+	public void setMalp(LoaiPhong malp) {
+		this.malp = malp;
 	}
 	public boolean isTinhTrang() {
-		return TinhTrang;
+		return tinhTrang;
 	}
-
 	public void setTinhTrang(boolean tinhTrang) {
-		TinhTrang = tinhTrang;
+		this.tinhTrang = tinhTrang;
 	}
-	 public LoaiPhong getLoaiPhong() {
-	        return MaLP;
-	    }
 
-	    public void setLoaiPhong(LoaiPhong MaLP) {
-	        this.MaLP = MaLP;
-	    }
+	
 	
 }
