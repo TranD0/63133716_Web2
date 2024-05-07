@@ -22,7 +22,7 @@
     <!-- Main content container -->
     <div class="container mt-5">
         <h2>[[${pageTitle}]]</h2>
-        <form th:action="@{/Phong/Luu}" th:object="${Phong}" method="POST">
+        <form th:action="@{/Admin/Phong/Luu}" th:object="${Phong}" method="POST">
             <input type="hidden" th:field="*{maP}">
             <div class="form-group row">
                 <label for="soP" class="col-md-2 col-form-label">Số phòng:</label>
@@ -48,7 +48,7 @@
             <div class="form-group row">
                 <div class="col-md-6 offset-md-2">
                     <button type="submit" class="btn btn-primary">Lưu</button>
-                    <a href="/Phong/Index" class="btn btn-secondary">Hủy</a>
+                    <a href="/Admin/Phong/Index" class="btn btn-secondary">Hủy</a>
                 </div>
             </div>
         </form>

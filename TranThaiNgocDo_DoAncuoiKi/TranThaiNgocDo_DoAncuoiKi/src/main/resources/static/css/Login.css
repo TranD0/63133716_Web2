@@ -1,0 +1,76 @@
+body {
+    background-image: url("../images/panel1.jpg");
+    background-size: cover;
+    overflow: hidden;
+  }
+.error {
+    margin-left: 12%;
+    color: red;
+  }
+.ico {
+    width: 25px;
+  }
+
+.close {
+    display: none;
+  }
+
+.custom-input {
+    margin-left: 10%;
+    width: 80%;
+    font-size: 24;
+    padding: 8px 5px;
+  }
+
+#formTitle {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10%;
+    letter-spacing: 1px;
+    color: white;
+    font-weight: bold;
+  }
+input[type="submit"] {
+    width: 55%;
+    padding: 10px 15px;
+  }
+
+.parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 5px;
+  }
+
+p {
+    padding: 8px 15px;
+  }
+
+.remefor {
+    display: flex;
+    justify-content:end;
+    width: 80%;
+    margin: 2% 0 8% 0;
+  }
+.row {
+    height: 100vh;
+    width: 100%;
+  }
+  .container {
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 625px;
+    border-radius: 15px;
+    padding-top: 10%;
+    margin-left: 20%;
+    color: #20223C;
+  }
+.left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.custom-input input {
+    background-color: rgba(255, 255, 255, 0.5);
+    /* Màu nền với độ mờ 0.5 */
+  }

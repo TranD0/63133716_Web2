@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.Models.LoaiPhong;
 import com.example.demo.Services.LoaiPhongService;
 @Controller
-@RequestMapping("/LoaiPhong")
+@RequestMapping("/Admin/LoaiPhong")
 public class LoaiPhongController {
 	@Autowired LoaiPhongService loaiPhongService;
 	@GetMapping("/Index")
@@ -59,14 +59,14 @@ public class LoaiPhongController {
     public String hienTrangXoa(@PathVariable("malp") int id, RedirectAttributes ra) {
         loaiPhongService.deleteLoaiPhong(id);
         ra.addFlashAttribute("message","đã xóa thành công!");
-        return "redirect:/LoaiPhong/Index"; 
+        return "redirect:/Admin/LoaiPhong/Index"; 
     }
 
     @PostMapping("/Luu")
     public String themLoaiPhong(LoaiPhong loaiPhong,RedirectAttributes ra ) {
         loaiPhongService.addLoaiPhong(loaiPhong);
         ra.addFlashAttribute("message","đã thêm loại phòng mới thành công!");
-        return "redirect:/LoaiPhong/Index"; 
+        return "redirect:/Admin/LoaiPhong/Index"; 
     }
 
 

@@ -17,7 +17,7 @@ import com.example.demo.Models.Phong;
 import com.example.demo.Services.LoaiPhongService;
 import com.example.demo.Services.PhongService;
 @Controller
-@RequestMapping("/Phong")
+@RequestMapping("/Admin/Phong")
 public class PhongController {
 		@Autowired PhongService  phongService ;
 		@Autowired LoaiPhongService  loaiPhongService ;
@@ -64,12 +64,12 @@ public class PhongController {
    		 public String hienTrangXoa(@PathVariable("maP") int id, RedirectAttributes ra) {
        		phongService.deletePhong(id);
         ra.addFlashAttribute("message","đã xóa thành công!");
-        return "redirect:/Phong/Index"; 
+        return "redirect:/Admin/Phong/Index"; 
     	}
 		@PostMapping("/Luu")
 		public String themPhong(Phong Phong,RedirectAttributes ra ) {
 			phongService.addPhong(Phong);
 			ra.addFlashAttribute("message","đã thêm phòng mới thành công!");
-			return "redirect:/Phong/Index"; 
+			return "redirect:/Admin/Phong/Index"; 
 		}
 }

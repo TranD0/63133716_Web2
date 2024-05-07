@@ -19,7 +19,7 @@
         <div th:replace="~{fragments/search ::div}"></div>
         <div class="row mb-3 mt-3">
             <div class="col-md-12">
-                <a href="/LoaiPhong/Them"class="btn btn-primary mr-2 mb-2">Thêm</a>
+                <a href="/Admin/LoaiPhong/Them"class="btn btn-primary mr-2 mb-2">Thêm</a>
                 <div th:if="${message}" class="alert alert-success text-center">[[${message}]]</div>
             </div>
         </div>
@@ -43,8 +43,8 @@
                     <td th:text="${lp.sucChua}" ></td>
                     <td th:text="${lp.moTa}"  ></td>
                     <td>
-                        <a class="btn btn-warning mr-2 mb-2" th:href="@{'/LoaiPhong/Sua/'+${lp.maLP}}">Sửa</a> 
-                        <a class="btn btn-danger mb-2" th:href="@{'/LoaiPhong/Xoa/' + ${lp.maLP}}" onclick="return confirm('Bạn chắc chắn muốn xóa chứ?')">Xóa</a>
+                        <a class="btn btn-warning mr-2 mb-2" th:href="@{'/Admin/LoaiPhong/Sua/'+${lp.maLP}}">Sửa</a> 
+                        <a class="btn btn-danger mb-2" th:href="@{'/Admin/LoaiPhong/Xoa/' + ${lp.maLP}}" onclick="return confirm('Bạn chắc chắn muốn xóa chứ?')">Xóa</a>
                     </td>
                 </tr>
             </tbody>
