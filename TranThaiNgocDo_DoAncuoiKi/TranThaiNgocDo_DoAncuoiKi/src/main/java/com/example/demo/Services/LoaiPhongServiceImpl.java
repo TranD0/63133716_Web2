@@ -50,13 +50,9 @@ public class LoaiPhongServiceImpl implements LoaiPhongService {
 		Pageable pageable = PageRequest.of(soTrang - 1, 2);
        return this.loaiPhongReposity.findAll(pageable);
 	}
-
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public Page<LoaiPhong> searchLP(String tuKhoa, Integer soTrang) {
-		@SuppressWarnings("rawtypes")
-		List list = this.searchLP(tuKhoa);
+		List<LoaiPhong> list = this.searchLP(tuKhoa);
 		Pageable pageable = PageRequest.of(soTrang - 1, 2);
 		Integer batDau=(int) pageable.getOffset();
 		Integer ketThuc=((int) ((pageable.getOffset()+pageable.getPageSize())>list.size() ? list.size()  : pageable.getOffset()+ pageable.getPageSize()));
@@ -67,7 +63,7 @@ public class LoaiPhongServiceImpl implements LoaiPhongService {
 
 	@Override
 	public List<LoaiPhong> searchLP(String tuKhoa) {
-	return this.loaiPhongReposity.searchLP(tuKhoa);	
+	return loaiPhongReposity.searchLP(tuKhoa);	
 
 	}
 

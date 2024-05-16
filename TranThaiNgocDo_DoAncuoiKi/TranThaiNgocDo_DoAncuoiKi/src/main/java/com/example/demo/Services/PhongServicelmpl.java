@@ -51,11 +51,11 @@ public class PhongServicelmpl implements PhongService {
 	public List<Phong> searchP(String tuKhoa) {
 		return this.PhongReposity.searchP(tuKhoa);	
 	}
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public Page<Phong> searchP(String tuKhoa, Integer soTrang) {
-		@SuppressWarnings("rawtypes")
-		List list = this.searchP(tuKhoa);
+
+		List<Phong> list = this.searchP(tuKhoa);
 		Pageable pageable = PageRequest.of(soTrang - 1, 2);
 		Integer batDau=(int) pageable.getOffset();
 		Integer ketThuc=((int) ((pageable.getOffset()+pageable.getPageSize())>list.size() ? list.size()  : pageable.getOffset()+ pageable.getPageSize()));

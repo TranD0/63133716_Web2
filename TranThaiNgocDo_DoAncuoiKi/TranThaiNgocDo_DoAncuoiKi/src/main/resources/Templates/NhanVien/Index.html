@@ -15,6 +15,7 @@
 
   <div class="container">
     <h2 class=" mb-3">Danh sách nhân viên</h2>
+    <div th:replace="~{fragments/search ::div}"></div>
     <div class="row mb-3 mt-3">
       <div class="col-md-12">
           <a href="/Admin/NhanVien/Them"class="btn btn-primary mr-2 mb-2">Thêm</a>
@@ -25,8 +26,7 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Mã nhân viên</th>
-          <th scope="col">Họ</th>
-          <th scope="col">Tên</th>
+          <th scope="col">Họ và tên</th>
           <th scope="col">Số điện thoại</th>
           <th scope="col">Email</th>
           <th scope="col">Giới tính</th>
@@ -37,8 +37,7 @@
       <tbody>
         <tr th:each="nv : ${nhanvien}">
           <td th:text="${nv.maNV}" ></td>
-          <td th:text="${nv.ho}" ></td>
-          <td th:text="${nv.ten}" ></td>
+          <td th:text="${nv.ho}+ ' ' + ${ nv.ten}" ></td>
           <td th:text="${nv.sdt}" ></td>
           <td th:text="${nv.email}" ></td>
           <td>
@@ -48,14 +47,14 @@
           <td  ><img th:src="@{/Images/AnhNV/{anhNV}(anhNV=${nv.anhNV})}" alt="Ảnh nhân viên" width="50" height="50"></td>
           
           <td>
-            <a type="button" class="btn btn-warning mr-2 mb-2" th:href="@{'/Admin/NhanVien/Sua/'+${nv.maNV}}">Sửa</a>
+            <!-- <a type="button" class="btn btn-warning mr-2 mb-2" th:href="@{'/Admin/NhanVien/Sua/'+${nv.maNV}}">Sửa</a> -->
             <a type="button" class="btn btn-danger mb-2"  th:href="@{'/Admin/NhanVien/Xoa/' + ${nv.maNV}}" onclick="return confirm('Bạn chắc chắn muốn xóa chứ?')">Xóa</a>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-
+  <div th:replace="~{fragments/Page :: nav}"></div> 
   <div th:replace="~{fragments/footer :: footer}">Footer ở đây</div>
   <!-- Bootstrap JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

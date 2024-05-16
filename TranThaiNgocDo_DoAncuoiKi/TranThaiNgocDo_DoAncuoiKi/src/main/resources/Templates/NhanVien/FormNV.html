@@ -22,8 +22,9 @@
     <!-- Main content container -->
     <div class="container mt-5">
         <h2>[[${pageTitle}]]</h2>
-        <form th:action="@{/Admin/NhanVien/Luu}" th:object="${nhanvien}" method="POST">
+        <form th:action="@{/Admin/NhanVien/Luu}" th:object="${nhanvien}" method="POST"  enctype="multipart/form-data">
             <input type="hidden" th:field="*{maNV}">
+            <input type="hidden" th:field="*{anhNV}" value="0">
             <div class="form-group row">
                 <label for="ho" class="col-md-2 col-form-label">Họ:</label>
                 <div class="col-md-6">
@@ -51,7 +52,7 @@
             <div class="form-group row">
                 <label for="anhNV" class="col-md-2 col-form-label">Ảnh:</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="anhNV" th:field="*{anhNV}" required maxlength="50">
+                    <input type="file" id="anhNVfile" name="anhNVfile" required maxlength="50">
                 </div>
             </div>
             <div class="form-group row">

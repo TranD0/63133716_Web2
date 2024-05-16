@@ -1,9 +1,11 @@
 package com.example.demo.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,8 +21,10 @@ public class NhanVienServicelmpl implements NhanVienService{
 
     @Override
     public NhanVien getNhanVienBYID(int manv) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNhanVienBYID'");
+       Optional<NhanVien> result=nhanVienRepository.findById(manv);
+		if(result.isPresent())
+		return result.get();
+		return null;
     }
 
     @Override
@@ -42,14 +46,16 @@ public class NhanVienServicelmpl implements NhanVienService{
 
     @Override
     public List<NhanVien> searchNV(String tuKhoa) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'searchNV'");
+        return this.nhanVienRepository.searchNV(tuKhoa);
     }
-
     @Override
     public Page<NhanVien> searchNV(String tuKhoa, Integer soTrang) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'searchNV'");
+		List<NhanVien> list = this.searchNV(tuKhoa);
+		Pageable pageable = PageRequest.of(soTrang - 1, 2);
+		Integer batDau=(int) pageable.getOffset();
+		Integer ketThuc=((int) ((pageable.getOffset()+pageable.getPageSize())>list.size() ? list.size()  : pageable.getOffset()+ pageable.getPageSize()));
+		list=list.subList(batDau,ketThuc);
+		return new PageImpl<NhanVien>(list,pageable,this.searchNV(tuKhoa).size());
     }
 
 }
