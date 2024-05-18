@@ -13,11 +13,11 @@
         <script src="/script/login.js"></script>
       </head>
       <style>
-    /* body {
-    background-image: url("images/panel1.jpg");
+        body {
+    background-image: url("../images/panel1.jpg");
     background-size: cover;
     overflow: hidden;
-  } */
+  }
       </style>
       <body>
         <div class="container-fluid">
@@ -26,11 +26,10 @@
               <div class="container">
                 <h1 id="formTitle">Đăng nhập</h1>
                 <div class="Login_form">
-                  <form method="post" >
+                  <form method="post" action="/login">
                     <div class="input-group flex-nowrap custom-input">
                       <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-envelope ico"></i></span>
                       <input type="text" name="email" placeholder="Mã nhân viên" class="form-control"  required />
-      
                     </div>
                     <div class="error" id="error1"></div>
                     <div class="input-group flex-nowrap custom-input" style="display: flex; overflow: hidden;">
@@ -44,7 +43,7 @@
                     <div class="error" id="error2"></div>
                     <div class="small remefor">
                       <div class="parent-container">
-                        <input type="submit" name="login" value="Login" class="btn btn-outline-light">
+                        <button type="submit"  class="btn btn-outline-light">Login</button>
                       </div>  
                   </form>
                   <div onclick="forgotPassword()"><a class="text-white-50" href="#!">Quên mật khẩu?</a></div>

@@ -30,11 +30,13 @@ public class NhanVien {
     @Column(name = "anhnv", length = 50, nullable = false)
     private String anhNV;
 
-    @Column(name = "gt")
+    @Column(name = "gt", nullable = false)
     private boolean gioiTinh;
 
     @Column(name = "matkhau", length = 100, nullable = false)
     private String matKhau;
+    
+   
     //
     public NhanVien() {
     }
