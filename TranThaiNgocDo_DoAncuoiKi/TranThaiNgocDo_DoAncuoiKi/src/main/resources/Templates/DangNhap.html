@@ -26,10 +26,10 @@
               <div class="container">
                 <h1 id="formTitle">Đăng nhập</h1>
                 <div class="Login_form">
-                  <form method="post" action="/login">
+                  <form th:action="@{/login}" method="post">
                     <div class="input-group flex-nowrap custom-input">
                       <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-envelope ico"></i></span>
-                      <input type="text" name="email" placeholder="Mã nhân viên" class="form-control"  required />
+                      <input type="text"id="username" name="username" placeholder="Email" class="form-control"  required />
                     </div>
                     <div class="error" id="error1"></div>
                     <div class="input-group flex-nowrap custom-input" style="display: flex; overflow: hidden;">
@@ -37,7 +37,7 @@
                         <i class="fa-solid  fa-eye-slash ico"></i>
                         <i class="fa-solid fa-eye ico" style="display: none;"></i>
                       </span>
-                      <input type="password" name="password" id="password" placeholder="Mật khẩu" class="form-control"  required/>
+                      <input type="password" id="password" name="password"placeholder="Mật khẩu" class="form-control"  required/>
       
                     </div>
                     <div class="error" id="error2"></div>

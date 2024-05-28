@@ -1,21 +1,22 @@
-
     <nav>
         <div id="mySidebar" class="sidebar">
-            <a href="/Admin/Home" class="">Trang chủ</a>
-            <a href="/Admin/LoaiPhong/Index" class="">Loại Phòng</a>
+            <a href="/Admin/Index" class="">Trang chủ</a>
             <a href="/Admin/Phong/Index">Phòng</a>
-            <a href="/Admin/NhanVien/Index">Nhân viên</a>
+                <a href="/Admin/NhanVien/Index">Nhân viên</a>
             <a href="/Admin/DichVu/Index">Dịch vụ</a>
-            <a href="#" class="">Đặt Phòng</a>
-            <a href="#" class="">Hóa đơn</a>
+            <a href="/Admin/DatPhong/Index" class="">Đặt Phòng</a>
+            <a href="/Admin/HoaDon/Index" class="">Hóa đơn</a>
             <div class="user-profile" onmouseover="showUserInfo()" onmouseleave="hideUserInfo()">
-                <img src="/images/logo.jpg" alt="Avatar" class="avatar">
-                <span class="employee-name">Tên nhân viên</span>
-                <!-- Danh sách thông tin nhân viên -->
+                <!-- <img src="/images/logo.jpg" alt="Avatar" class="avatar"> -->
+                <img th:src="@{/Images/AnhNV/{anhNV}(anhNV=${NVlogin.anhNV})}" alt="Ảnh nhân viên" class="avatar" width="50" height="50">
+                <span class="employee-name"th:text="${NVlogin.email}"></span>
                 <div id="user-info" class="user-info">
                     <ul>
-                        <li><a href="#"style="font-size: 14px;">Cá nhân</a></li>
-                        <li><a href="#" onclick="logout()"style="font-size: 14px;">Đăng xuất</a></li>
+                        <li> <a href="#" th:href="@{'/Admin/Sua/'+${NVlogin.maNV}}"style="font-size: 14px;">Đổi mật khẩu </a></li>
+                        <li><form id="logout-form" action="/logout" method="post">
+                            <a href="/logout" style="font-size: 14px;">Đăng xuất</a>
+                        </form></li>
+                            
                     </ul>
                 </div>
             </div>

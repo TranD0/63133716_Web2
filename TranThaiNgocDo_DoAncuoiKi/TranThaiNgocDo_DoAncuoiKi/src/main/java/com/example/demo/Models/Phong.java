@@ -25,40 +25,61 @@ public class Phong {
     @Column(name = "tinhtrang")
     private boolean tinhTrang;
 	
-	//
-	public Phong() {}
-	public Phong(int MaPhong, String SoPhong, LoaiPhong MaLP, boolean TinhTrang) {
-		this.maP=MaPhong;
-		this.soP=SoPhong;
-		this.malp=MaLP;
-		this.tinhTrang=TinhTrang;
+	@ManyToOne
+    @JoinColumn(name = "madp")
+    private DatPhong madp;
+	
+
+	public Phong() {
 	}
-	//
+
+	public Phong(int maP, String soP, LoaiPhong malp, boolean tinhTrang, DatPhong madp) {
+		this.maP = maP;
+		this.soP = soP;
+		this.malp = malp;
+		this.tinhTrang = tinhTrang;
+		this.madp = madp;
+	}
+
 	public int getMaP() {
 		return maP;
 	}
+
 	public void setMaP(int maP) {
 		this.maP = maP;
 	}
+
 	public String getSoP() {
 		return soP;
 	}
+
 	public void setSoP(String soP) {
 		this.soP = soP;
 	}
+
 	public LoaiPhong getMalp() {
 		return malp;
 	}
+
 	public void setMalp(LoaiPhong malp) {
 		this.malp = malp;
 	}
+
 	public boolean isTinhTrang() {
 		return tinhTrang;
 	}
+
 	public void setTinhTrang(boolean tinhTrang) {
 		this.tinhTrang = tinhTrang;
 	}
 
-	
+	public DatPhong getMadp() {
+		return madp;
+	}
+
+	public void setMadp(DatPhong madp) {
+		this.madp = madp;
+	}
+		
 	
 }

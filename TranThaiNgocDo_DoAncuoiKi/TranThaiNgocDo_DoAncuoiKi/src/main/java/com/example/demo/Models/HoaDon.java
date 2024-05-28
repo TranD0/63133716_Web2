@@ -1,8 +1,6 @@
 package com.example.demo.Models;
 import java.math.BigDecimal;
-import java.security.Timestamp;
-
-
+import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +20,7 @@ public class HoaDon {
     private int maHD;
 
     @ManyToOne
-    @JoinColumn(name = "madp")
+    @JoinColumn(name = "madp",nullable = false)
     private DatPhong madp;
 	    
 	@Column(name = "tongtien",precision = 10, scale = 2, nullable = false)
@@ -31,23 +29,17 @@ public class HoaDon {
 	@ManyToOne
 	@JoinColumn(name = "manv", nullable = false)
 	private NhanVien manv;
-	
-	    
-	@Column(name = "canhtra", length = 50, nullable = false)
-    private String canhTra;
 	    
 	@Column(name = "thoigiantao", nullable = false)
-	private Timestamp ThoiGianTao;
+	private LocalDateTime ThoiGianTao;
 	    // Constructors
 	    public HoaDon() {
 	    }
 	    
-	    public HoaDon(int mahd,DatPhong maDP,BigDecimal tongTien, NhanVien maNV, String cachTra, Timestamp thoiGianTao) {
-	        this.maHD=mahd;
+	    public HoaDon(DatPhong maDP,BigDecimal tongTien, NhanVien maNV, LocalDateTime thoiGianTao) {
 			this.madp = maDP;
 	        this.tongTien = tongTien;
 	        this.manv= maNV;
-	        this.canhTra= cachTra;
 	        this.ThoiGianTao = thoiGianTao;
 	    }
 	    //
@@ -83,20 +75,11 @@ public class HoaDon {
 		public void setManv(NhanVien manv) {
 			this.manv = manv;
 		}
-
-		public String getCanhTra() {
-			return canhTra;
-		}
-
-		public void setCanhTra(String canhTra) {
-			this.canhTra = canhTra;
-		}
-
-		public Timestamp getThoiGianTao() {
+		public LocalDateTime getThoiGianTao() {
 			return ThoiGianTao;
 		}
 
-		public void setThoiGianTao(Timestamp thoiGianTao) {
+		public void setThoiGianTao(LocalDateTime thoiGianTao) {
 			ThoiGianTao = thoiGianTao;
 		}
 

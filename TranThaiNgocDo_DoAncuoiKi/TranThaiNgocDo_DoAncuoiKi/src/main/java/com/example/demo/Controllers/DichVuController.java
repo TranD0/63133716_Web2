@@ -1,5 +1,4 @@
 package com.example.demo.controllers;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,12 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.Models.DichVu;
-import com.example.demo.Models.NhanVien;
 import com.example.demo.Services.DichVuService;
 import com.example.demo.Services.NhanVienService;
 
@@ -51,12 +50,16 @@ public class DichVuController {
     	}
     @GetMapping("/Sua/{maP}")
 		public String hienTrangSua(@PathVariable("maP") int id,Model model,RedirectAttributes ra ) {
-			List<NhanVien> list = nhanVienService.getAllNhanVien();
-			model.addAttribute("list", list);
 		   DichVu dichVu =dichVuService.getDichVuBYID(id);
            dichVu.setMaDV(id);
 			model.addAttribute("dichVu", dichVu);
 			model.addAttribute("pageTitle", "Sửa Dịch Vụ (Mã: "+id+")");
 			return "DichVu/FormDV";
 		}
+		@PostMapping("/Luu")
+    public String luuDichVu(DichVu dichVu,RedirectAttributes ra ) {
+       dichVuService.addDichVu(dichVu);
+        ra.addFlashAttribute("message","đã thêm dịch vụ mới thành công!");
+        return "redirect:/Admin/DichVu/Index"; 
+    }
 }

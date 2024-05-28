@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,7 +29,7 @@ public class NhanVien {
     @Column(name = "email", length = 100, nullable = false)
     private String email;
 
-    @Column(name = "anhnv", length = 50, nullable = false)
+    @Column(name = "anhnv", length = 50)
     private String anhNV;
 
     @Column(name = "gt", nullable = false)
@@ -36,18 +38,23 @@ public class NhanVien {
     @Column(name = "matkhau", length = 100, nullable = false)
     private String matKhau;
     
+    @ManyToOne
+    @JoinColumn(name = "mavt", nullable = false)
+    private VaiTro mavt;
+    
    
     //
     public NhanVien() {
     }
     
-    public NhanVien(String ho, String ten, String sdt, String email, boolean gt, String matKhau) {
+    public NhanVien(String ho, String ten, String sdt, String email, boolean gt, String matKhau ) {
         this.ho = ho;
         this.ten = ten;
         this.sdt = sdt;
         this.email = email;
         this.gioiTinh = gt;
         this.matKhau = matKhau;
+       
     }
     //
 
@@ -115,5 +122,19 @@ public class NhanVien {
         this.matKhau = matKhau;
     }
 
+    public VaiTro getMavt() {
+        return mavt;
+    }
+
+    public void setMavt(VaiTro mavt) {
+        this.mavt = mavt;
+    }
+
+    @Override
+    public String toString() {
+        return ho + " " + ten;
+    }
+
 	
+
 }

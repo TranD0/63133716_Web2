@@ -47,13 +47,13 @@ public class LoaiPhongServiceImpl implements LoaiPhongService {
 
 	@Override
 	public Page<LoaiPhong> findAll(Integer soTrang) {
-		Pageable pageable = PageRequest.of(soTrang - 1, 2);
+		Pageable pageable = PageRequest.of(soTrang - 1, 6);
        return this.loaiPhongReposity.findAll(pageable);
 	}
 	@Override
 	public Page<LoaiPhong> searchLP(String tuKhoa, Integer soTrang) {
 		List<LoaiPhong> list = this.searchLP(tuKhoa);
-		Pageable pageable = PageRequest.of(soTrang - 1, 2);
+		Pageable pageable = PageRequest.of(soTrang - 1, 6);
 		Integer batDau=(int) pageable.getOffset();
 		Integer ketThuc=((int) ((pageable.getOffset()+pageable.getPageSize())>list.size() ? list.size()  : pageable.getOffset()+ pageable.getPageSize()));
 		list=list.subList(batDau,ketThuc);

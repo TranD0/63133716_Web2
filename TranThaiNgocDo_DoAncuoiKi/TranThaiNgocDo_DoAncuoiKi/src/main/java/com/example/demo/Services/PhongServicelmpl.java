@@ -43,7 +43,7 @@ public class PhongServicelmpl implements PhongService {
 
 	@Override
 	public Page<Phong> findAll(Integer soTrang) {
-		Pageable pageable = PageRequest.of(soTrang - 1, 2);
+		Pageable pageable = PageRequest.of(soTrang - 1, 6);
        return this.PhongReposity.findAll(pageable);
 	}
 	
@@ -56,7 +56,7 @@ public class PhongServicelmpl implements PhongService {
 	public Page<Phong> searchP(String tuKhoa, Integer soTrang) {
 
 		List<Phong> list = this.searchP(tuKhoa);
-		Pageable pageable = PageRequest.of(soTrang - 1, 2);
+		Pageable pageable = PageRequest.of(soTrang - 1, 6);
 		Integer batDau=(int) pageable.getOffset();
 		Integer ketThuc=((int) ((pageable.getOffset()+pageable.getPageSize())>list.size() ? list.size()  : pageable.getOffset()+ pageable.getPageSize()));
 		list=list.subList(batDau,ketThuc);

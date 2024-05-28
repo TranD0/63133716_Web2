@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh sách Hóa đơn</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- CSS tùy chỉnh -->
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- Script -->
+  <script src="/script/sidebar.js"></script>
+</head>
+
+<body>
+     <div th:replace="~{fragments/sidebar :: nav}"></div>
+   
+    <div class="container">
+        <h2 class=" mb-3">Danh sách Hóa đơn</h2>
+        <div class="col-md-6">
+    <form class="form-inline">
+      <input class="form-control mr-sm-2 search-box  border-dark" type="datetime-local" placeholder="Tìm kiếm" name="tuKhoa" aria-label="Search" th:value="${tuKhoa1}">
+      <input class="form-control mr-sm-2 search-box  border-dark" type="datetime-local" placeholder="Tìm kiếm" name="tuKhoa" aria-label="Search" th:value="${tuKhoa2}">
+      <button class="btn  btn-outline-dark my-2 my-sm-0 search-btn" type="submit">Search</button>
+    </form>
+  </div>
+        <div class="row mb-3 mt-3">
+            <div class="col-md-12">
+                <div th:if="${message}" class="alert alert-success text-center">[[${message}]]</div>
+            </div>
+        </div>
+        
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Mã Hóa đơn</th>
+                    <th scope="col">Mã Đặt phòng</th>
+                    <th scope="col">Tổng tiền</th>
+                    <th scope="col">Mã Nhân viên</th>
+                    <th scope="col">Thời gian tạo</th>
+                    <th scope="col">Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="hoaDon : ${HoaDon}">
+                    <td th:text="${hoaDon.maHD}"></td>
+                    <td th:text="${hoaDon.madp}"></td>
+                    <td th:text="${hoaDon.tongTien}"></td>
+                    <td th:text="${hoaDon.manv}"></td>
+                    <td th:text="${hoaDon.thoiGianTao}"></td>
+                    <td>
+                        <a class="btn btn-success mr-2 mb-2">Xem chi tiết</a> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="~{fragments/Page :: nav}"></div>
+<div th:replace="~{fragments/footer :: footer}">Footer ở đây</div>
+<!-- Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+
+</body>
+</html>

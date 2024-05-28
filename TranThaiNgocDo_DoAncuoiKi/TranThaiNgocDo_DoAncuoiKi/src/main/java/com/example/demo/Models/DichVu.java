@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,11 +23,6 @@ public class DichVu {
 	    
 	@Column(name = "CoSan")
 	private boolean CoSan;
-
-    @ManyToOne
-    @JoinColumn(name = "manv", nullable = false)
-    private NhanVien manv;
-
     @Column(name = "soluong")
     private int soLuong;
 
@@ -41,11 +34,10 @@ public class DichVu {
 	        // Default constructor
 	    }
 	    
-	    public DichVu(String tenDV, BigDecimal gia, boolean coSan, NhanVien maNV, int soLuong, String loaiDonVi) {
+	    public DichVu(String tenDV, BigDecimal gia, boolean coSan, int soLuong, String loaiDonVi) {
 	        this.tenDV = tenDV;
 	        this.gia = gia;
 	        this.CoSan = coSan;
-	        this.manv = maNV;
 	        this.soLuong = soLuong;
 	        this.loaiDonVi = loaiDonVi;
 	    }
@@ -81,16 +73,6 @@ public class DichVu {
 		public void setCoSan(boolean coSan) {
 			CoSan = coSan;
 		}
-
-
-		public NhanVien getManv() {
-			return manv;
-		}
-
-		public void setManv(NhanVien manv) {
-			this.manv = manv;
-		}
-
 		public int getSoLuong() {
 			return soLuong;
 		}

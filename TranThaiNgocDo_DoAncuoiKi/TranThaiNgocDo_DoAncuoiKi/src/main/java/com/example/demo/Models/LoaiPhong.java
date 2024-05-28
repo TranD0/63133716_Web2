@@ -81,4 +81,9 @@ public class LoaiPhong {
 		this.moTa = moTa;
 	}
 
+	@Override
+	public String toString() {
+		return  tenlp ;
+	}
+
 }

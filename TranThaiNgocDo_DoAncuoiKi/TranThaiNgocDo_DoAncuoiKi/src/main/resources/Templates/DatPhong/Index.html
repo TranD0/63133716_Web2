@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách đặt phòng</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+  <script src="/script/sidebar.js"></script>
+</head>
+<body>
+    <div th:replace="~{fragments/sidebar :: nav}"></div>
+<div class="container">
+    <h2 class=" mb-3">Danh sách đặt phòng</h2>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Mã đặt</th>
+            <th scope="col">Phòng</th>
+            <th scope="col">Ngày nhận</th>
+            <th scope="col">Ngày trả</th>
+            <th scope="col">Tên khách</th>
+            <th scope="col">Sđt</th>
+            <th scope="col">Nhân viên</th>
+            <th scope="col">Tình trạng</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="datPhong : ${danhSachDatPhong}">
+            <td th:text="${datPhong.madp}"></td>
+            <td th:text="${datPhong.malp}"></td>
+            <td th:text="${datPhong.ngayNhan}"></td>
+            <td th:text="${datPhong.ngayTra}"></td>
+            <td th:text="${datPhong.tenKH}"></td>
+            <td th:text="${datPhong.sdt}"></td>
+            <td th:text="${datPhong.manv}"></td>
+            <td>
+                <span th:if="${datPhong.tinhTrang}" class="bg-success text-white">Đã thanh toán</span>
+                <span th:if="${not datPhong.tinhTrang}" class="bg-danger text-white">Chưa thanh toán</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="~{fragments/footer :: footer}">Footer ở đây</div>
+</body>
+</html>

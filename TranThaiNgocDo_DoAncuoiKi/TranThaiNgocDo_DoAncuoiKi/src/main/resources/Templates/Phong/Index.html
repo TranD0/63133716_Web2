@@ -5,58 +5,171 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thông tin Phòng</title>
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <script src="/script/sidebar.js"></script>
 </head>
 <body>
-     <div th:replace="~{fragments/sidebar :: nav}"></div>
+<div th:replace="~{fragments/sidebar :: nav}"></div>
 
-    <div class="container">
-        <h2 class=" mb-3">Phòng</h2>
-        <div th:replace="~{fragments/search ::div}"></div>
-        <div class="row mb-3 mt-3">
-            <div class="col-md-12">
-                <a href="/Admin/Phong/Them"class="btn btn-primary mr-2 mb-2">Thêm</a>
-            
-            </div>
+<div class="container">
+    <h2 class="mb-3">Phòng</h2>
+    <div th:replace="~{fragments/search :: div}"></div>
+    <div class="row mb-3 mt-3">
+        <div class="col-md-12">
+            <a href="/Admin/Phong/Them" class="btn btn-primary mr-2 mb-2">Thêm</a>
+            <button type="button" class="btn btn-info mr-2 mb-2" data-toggle="modal" data-target="#addDatPhongModal">Đặt</button>
         </div>
-        
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Mã  phòng</th>
-                    <th scope="col">Tên phòng</th>
-                    <th scope="col">loại Phòng</th>
-                    <th scope="col">Tình trạng</th>
-                    <th scope="col">Chức năng</th>
-                
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="p : ${phong}">
-                    <td th:text="${p.maP}" ></td>
-                    <td th:text="${p.soP}" ></td>
-                    <td th:text="${p.malp.tenLP}" ></td>
-                    <td>
-                        <span th:if="${p.tinhTrang}" class="bg-success text-white">Trống</span>
-                        <span th:if="${not p.tinhTrang}"class="bg-danger text-white">đang dùng</span>
-                    </td>
-                    <td>
-                        <a type="button" class="btn btn-warning mr-2 mb-2" th:href="@{'/Admin/Phong/Sua/'+${p.maP}}">Sửa</a>
-                        <a type="button" class="btn btn-danger mb-2"  th:href="@{'/Admin/Phong/Xoa/' + ${p.maP}}" onclick="return confirm('Bạn chắc chắn muốn xóa chứ?')">Xóa</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+        <a href="/Admin/DatPhong/Index"> Xem các đơn đặt phòng</a>
     </div>
-    <div th:replace="~{fragments/Page :: nav}"></div>
+
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            
+            <th scope="col">Tên phòng</th>
+            <th scope="col">Loại Phòng</th>
+            <th scope="col">Tình trạng</th>
+            <th scope="col">Thời gian trả</th>
+            <th scope="col">Chức năng</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${phong}">
+                <td th:text="${p.soP}"></td>
+                <td th:text="${p.malp.tenLP}"></td>
+                <td>
+                    <span th:if="${p.tinhTrang}" class="bg-success text-white">Trống</span>
+                    <span th:if="${not p.tinhTrang}" class="bg-danger text-white">Đang dùng</span>
+                </td>
+                <td th:text="${p.madp}"></td>
+                <td>
+                    <a type="button" class="btn btn-warning mr-2 mb-2" th:href="@{'/Admin/Phong/Sua/'+${p.maP}}">Sửa</a>
+                    <form th:action="@{/Admin/Phong/TinhTien}" method="post">
+                        <input type="hidden" name="maP" th:value="${p.maP}" />
+                        <button type="submit" class="btn btn-success mr-2 mb-2">Tính tiền</button>
+                    </form>
+                    <a type="button" class="btn btn-danger mb-2" th:href="@{'/Admin/Phong/Xoa/' + ${p.maP}}" onclick="return confirm('Bạn chắc chắn muốn xóa chứ?')">Xóa</a>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addDatPhongModal" tabindex="-1" role="dialog" aria-labelledby="addDatPhongModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form th:action="@{/Admin/DatPhong/Them}" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDatPhongModalLabel">Thêm Đặt Phòng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="maLP">Mã loại phòng</label>
+                        <select class="form-control" id="maLP" name="maLP" required>
+                            <option th:each="loaiPhong : ${listLoaiPhong}" th:value="${loaiPhong.maLP}" th:text="${loaiPhong.tenLP}"></option>
+                        </select>
+                    </div>
+                        
+                    <div class="form-group">
+                        <label for="ngayNhan">Ngày nhận</label>
+                        <input type="datetime-local" class="form-control" id="ngayNhan" name="ngayNhan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="soGio">Số giờ thuê:</label>
+                        <select class="form-control" id="soGio" name="soGio"onchange="updateNgayTra()">
+                            <option value="1">1 giờ</option>
+                            <option value="2">2 giờ</option>
+                            <option value="3">3 giờ</option>
+                            <option value="4">4 giờ</option>
+                            <option value="5">5 giờ</option>
+                            <option value="6">6 giờ</option>
+                            <option value="7">7 giờ</option>
+                            <option value="8">8 giờ</option>
+                            <option value="9">9 giờ</option>
+                            <option value="10">10 giờ</option>
+                            <option value="11">11 giờ</option>
+                            <option value="12">12 giờ</option>
+                            <option value="24">1 ngày</option>
+                            <option value="42">2 ngày</option>
+                            <option value="72">3 ngày</option>
+                            <option value="120">5 ngày</option>
+                            <option value="54">2 ngày 1 đêm</option>
+                           
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ngayTra">Ngày trả</label>
+                        <input type="datetime-local" class="form-control" id="ngayTra" name="ngayTra" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenKH">Tên khách hàng</label>
+                        <input type="text" class="form-control" id="tenKH" name="tenKH" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sdt">Số điện thoại</label>
+                        <input type="text" class="form-control" id="sdt" name="sdt" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="manv">Nhân viên</label>
+                        <input type="text" class="form-control" id="manv" name="manv" th:value="${NVlogin.maNV}" required readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="tinhTrang">Tình trạng</label>
+                        <select class="form-control" id="tinhTrang" name="tinhTrang">
+                            <option value="true">Đã thanh toán</option>
+                            <option value="false">Chưa thanh toán</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/Page :: nav}"></div>
 <div th:replace="~{fragments/footer :: footer}">Footer ở đây</div>
-<!-- Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+// Lấy ngày và giờ hiện tại
+var now = moment().utcOffset(7);
+
+// Chuyển định dạng ngày và giờ thành YYYY-MM-DDTHH:MM (định dạng được yêu cầu bởi input type datetime-local)
+var formattedDateTime = now.format('YYYY-MM-DDTHH:mm');
+
+// Đặt giá trị mặc định cho ô datetime-local
+document.getElementById('ngayNhan').value = formattedDateTime;
+
+function updateNgayTra() {
+    var ngayNhanString = document.getElementById("ngayNhan").value;
+    var soGio = parseInt(document.getElementById("soGio").value);
+    
+    // Sử dụng moment.js để chuyển đổi ngày nhận sang định dạng hỗ trợ
+    var ngayNhan = moment(ngayNhanString);
+    
+    // Thêm số giờ vào ngày nhận
+    var ngayTra = ngayNhan.add(soGio, 'hours');
+    
+    // Định dạng ngày trả
+    var ngayTraFormatted = ngayTra.format('YYYY-MM-DDTHH:mm');
+    
+    // Đặt giá trị cho ô input ngày trả
+    document.getElementById("ngayTra").value = ngayTraFormatted;
+}
+</script>
 
 </body>
 </html>

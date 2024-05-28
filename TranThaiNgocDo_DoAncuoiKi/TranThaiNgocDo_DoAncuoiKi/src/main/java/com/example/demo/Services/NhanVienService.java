@@ -14,4 +14,6 @@ public List<NhanVien> getAllNhanVien();
 	Page<NhanVien> findAll(Integer soTrang);
 	List<NhanVien> searchNV(String tuKhoa);
 	Page<NhanVien> searchNV(String tuKhoa,Integer soTrang);
+	public boolean emailExists(String email);
+	public void createRoleIfNotFound(String tuKhoa);
 }

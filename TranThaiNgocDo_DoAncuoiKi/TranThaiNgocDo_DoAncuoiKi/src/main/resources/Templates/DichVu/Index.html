@@ -33,7 +33,6 @@
                     <th scope="col">Tình trạng</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">Loại đơn vị</th>
-                    <th scope="col">Nhân viên thêm</th>
                     <th scope="col">Chức năng</th>
                 </tr>
             </thead>
@@ -42,10 +41,9 @@
                     <td th:text="${dv.maDV}" ></td>
                     <td th:text="${dv.tenDV}" ></td>
                     <td th:text="${dv.gia}" ></td>
-                    <td th:text="${dv.coSan ? 'Có' : 'Không'}" ></td>
+                    <td th:text="${dv.coSan ? 'Có sử dụng' : 'Không sử dụng'}" ></td>
                     <td th:text="${dv.soLuong}" ></td>
                     <td th:text="${dv.loaiDonVi}" ></td>
-                    <td th:text="${dv.manv.ho}+ ' ' + ${dv.manv.ten}" ></td>
                     <td>
                         <a class="btn btn-warning mr-2 mb-2" th:href="@{'/Admin/DichVu/Sua/'+${dv.maDV}}">Sửa</a> 
                         <a class="btn btn-danger mb-2" th:href="@{'/Admin/DichVu/Xoa/' + ${dv.maDV}}" onclick="return confirm('Bạn chắc chắn muốn xóa chứ?')">Xóa</a>

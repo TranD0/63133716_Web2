@@ -3,6 +3,7 @@ package com.example.demo.Services;
 import java.util.List;
 import java.util.Optional;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -14,6 +15,7 @@ import com.example.demo.Repositories.NhanVienRepository;
 @Service
 public class NhanVienServicelmpl implements NhanVienService{
     @Autowired NhanVienRepository nhanVienRepository;
+    @Autowired VaiTroService vaiTroService;
     @Override
     public List<NhanVien> getAllNhanVien() {
        return nhanVienRepository.findAll();
@@ -58,4 +60,33 @@ public class NhanVienServicelmpl implements NhanVienService{
 		return new PageImpl<NhanVien>(list,pageable,this.searchNV(tuKhoa).size());
     }
 
+    @Override
+    public boolean emailExists(String email) {
+      NhanVien nhanvien =nhanVienRepository.searchMaNV(email);
+      if (nhanvien == null) 
+        return false;
+       if(nhanvien.getEmail().equals(email))
+           return true;
+      return false;
+    }
+
+    @Override
+    public void createRoleIfNotFound(String tuKhoa) {
+     NhanVien nhanViens = nhanVienRepository.searchMaNV(tuKhoa);
+      if (nhanViens == null) {
+      { String hashedPassword = BCrypt.hashpw("123", BCrypt.gensalt());
+        NhanVien nVien = new NhanVien();
+        nVien.setHo(tuKhoa);
+        nVien.setTen(tuKhoa);
+        nVien.setEmail(tuKhoa);
+        nVien.setSdt("123456789");
+        nVien.setAnhNV("cow.jpg");
+        nVien.setMatKhau(hashedPassword);
+        nVien.setMavt(vaiTroService.getVaiTroBYID(1));
+    
+        
+        nhanVienRepository.save(nVien);
+      }
+    }
+  }
 }

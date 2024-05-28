@@ -37,12 +37,22 @@
                         <option th:each="loaiPhong : ${listLoaiPhong}" th:value="${loaiPhong.maLP}" th:text="${loaiPhong.tenLP}"></option>
                     </select>
                 </div>
+                <a href="/Admin/LoaiPhong/Index"> Xem các loại Phòng</a>
             </div>
             <div class="form-group row">
                 <label for="tinhTrang" class="col-md-2 col-form-label">Tình trạng:</label>
                 <div class="col-md-6">
                     <input type="checkbox" class="form-check-input" id="tinhTrang" th:field="*{tinhTrang}">
                     <label class="form-check-label" for="tinhTrang">Còn trống</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="madp" class="col-md-2 col-form-label">Mã đặt phòng:</label>
+                <div class="col-md-6">
+                    <select class="form-control" id="madp" th:field="*{madp}" >
+                        <option value="">Không chọn</option>
+                        <option th:each="datPhong : ${listDatPhong}" th:value="${datPhong.madp}" th:text="${datPhong.tenKH+' - ' + datPhong.sdt}"></option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
@@ -53,5 +63,20 @@
             </div>
         </form>
     </div>
+    <script>
+       $(document).ready(function(){
+        $('#madp').change(function(){
+            if($(this).val() !== '') {
+                $('#tinhTrang').prop('checked', false);
+            }
+        });
+
+        $('#tinhTrang').change(function(){
+            if($(this).is(':checked')) {
+                $('#madp').val('');
+            }
+        });
+    });
+    </script>
 </body>
 </html>

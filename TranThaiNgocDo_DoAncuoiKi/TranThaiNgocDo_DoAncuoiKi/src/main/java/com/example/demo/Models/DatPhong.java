@@ -1,6 +1,5 @@
 package com.example.demo.Models;
-import java.math.BigDecimal;
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,15 +17,13 @@ public class DatPhong {
 	@Column(name = "madp")
     private int madp;
 
-	@ManyToOne
-	@JoinColumn(name = "map", nullable = false)
-	private Phong mp;
+	
 
 	@Column(name = "ngaynhan", nullable = false)
-    private Timestamp ngayNhan; // Sử dụng java.sql.Timestamp thay vì java.util.Date
+    private LocalDateTime ngayNhan; 
 
     @Column(name = "ngaytra", nullable = false)
-    private Timestamp ngayTra; 
+    private LocalDateTime ngayTra; 
 
 	@Column(name = "tinhtrang")
     private boolean tinhTrang;
@@ -34,118 +31,118 @@ public class DatPhong {
     @Column(name = "tenkh", length = 50, nullable = false)
     private String tenKH;
 
-    @Column(name = "email", length = 100, nullable = false)
-    private String email;
-
     @Column(name = "sdt", length = 20, nullable = false)
     private String sdt;
-
 	@ManyToOne
 	@JoinColumn(name = "manv", nullable = false)
 	private NhanVien manv;
 
-
-	@Column(name = "tongtiendat",precision = 10, scale = 2, nullable = false)
-	private BigDecimal tongTienDat;
+	@ManyToOne
+    @JoinColumn(name = "malp", nullable = false)
+    private LoaiPhong malp;
 
 	    
 	    // Constructors
 	    public DatPhong() {}
 
-	    public DatPhong(int MaDP, Phong MaPhong, Timestamp NgayNhan, Timestamp NgayTra, boolean TinhTrang, String TenKH, String Email, String SDT, BigDecimal TongTienDat,NhanVien manv) {
-	        this.madp = MaDP;
-	        this.mp = MaPhong;
-	        this.ngayNhan = NgayNhan;
-	        this.ngayTra = NgayTra;
-	        this.tinhTrang = TinhTrang;
-	        this.tenKH = TenKH;
-	        this.email = Email;
-	        this.sdt = SDT;
-	        this.tongTienDat = TongTienDat;
-			this.manv=manv;
-	    }
-	 //getters, and setters
+
+		public DatPhong(int madp, LocalDateTime ngayNhan, LocalDateTime ngayTra, boolean tinhTrang, String tenKH, String sdt,
+				NhanVien manv, LoaiPhong malp) {
+			this.madp = madp;
+			this.ngayNhan = ngayNhan;
+			this.ngayTra = ngayTra;
+			this.tinhTrang = tinhTrang;
+			this.tenKH = tenKH;
+			this.sdt = sdt;
+			this.manv = manv;
+			this.malp = malp;
+		}
+
 
 		public int getMadp() {
 			return madp;
 		}
 
+
 		public void setMadp(int madp) {
 			this.madp = madp;
 		}
 
-		public Phong getMp() {
-			return mp;
-		}
 
-		public void setMp(Phong mp) {
-			this.mp = mp;
-		}
-
-		public Timestamp getNgayNhan() {
+		public LocalDateTime getNgayNhan() {
 			return ngayNhan;
 		}
 
-		public void setNgayNhan(Timestamp ngayNhan) {
+
+		public void setNgayNhan(LocalDateTime ngayNhan) {
 			this.ngayNhan = ngayNhan;
 		}
 
-		public Timestamp getNgayTra() {
+
+		public LocalDateTime getNgayTra() {
 			return ngayTra;
 		}
 
-		public void setNgayTra(Timestamp ngayTra) {
+
+		public void setNgayTra(LocalDateTime ngayTra) {
 			this.ngayTra = ngayTra;
 		}
+
 
 		public boolean isTinhTrang() {
 			return tinhTrang;
 		}
 
+
 		public void setTinhTrang(boolean tinhTrang) {
 			this.tinhTrang = tinhTrang;
 		}
+
 
 		public String getTenKH() {
 			return tenKH;
 		}
 
+
 		public void setTenKH(String tenKH) {
 			this.tenKH = tenKH;
 		}
 
-		public String getEmail() {
-			return email;
-		}
-
-		public void setEmail(String email) {
-			this.email = email;
-		}
 
 		public String getSdt() {
 			return sdt;
 		}
 
+
 		public void setSdt(String sdt) {
 			this.sdt = sdt;
 		}
+
 
 		public NhanVien getManv() {
 			return manv;
 		}
 
+
 		public void setManv(NhanVien manv) {
 			this.manv = manv;
 		}
 
-		public BigDecimal getTongTienDat() {
-			return tongTienDat;
+
+		public LoaiPhong getMalp() {
+			return malp;
 		}
 
-		public void setTongTienDat(BigDecimal tongTienDat) {
-			this.tongTienDat = tongTienDat;
+
+		public void setMalp(LoaiPhong malp) {
+			this.malp = malp;
 		}
 
-		
-	    
+
+		@Override
+		public String toString() {
+			return  ngayNhan+tenKH;
+		}
+
+	 
 }
