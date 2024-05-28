@@ -43,7 +43,7 @@
             <div class="form-group row">
                 <label for="sdt" class="col-md-2 col-form-label">Số điện thoại:</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="sdt" th:field="*{sdt}" required maxlength="50">
+                    <input type="text" class="form-control" id="sdt" th:field="*{sdt}" required minlength="10" maxlength="11">
                 </div>
             </div>
             <div class="form-group row">

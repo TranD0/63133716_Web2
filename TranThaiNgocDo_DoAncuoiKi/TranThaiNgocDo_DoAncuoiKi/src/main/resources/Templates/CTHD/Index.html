@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Chi Tiết Hóa Đơn</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/script/sidebar.js"></script>
+</head>
+<body>
+    <div th:replace="~{fragments/sidebar :: nav}"></div>
+   
+    <div class="container mt-5">
+        <h2>Danh Sách Chi Tiết Hóa Đơn</h2>
+        <a th:href="'/Admin/CTHD/Them/' + ${hoadon.maHD}" class="btn btn-primary">Thêm dịch vụ</a>
+        <a href="/Admin/HoaDon/Index"class="btn btn-secondary ">Quay lại</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mã CTHD</th>
+                    <th>Mã Hóa Đơn</th>
+                    <th>Dịch Vụ</th>
+                    <th>Số Lượng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cthd : ${cthdList}">
+                    <td th:text="${cthd.macthd}"></td>
+                    <td th:text="${cthd.hoaDon.maHD}"></td>
+                    <td th:text="${cthd.dichVu.tenDV}"></td>
+                    <td th:text="${cthd.soLuong}"></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+      
+    </div>
+    <div th:replace="~{fragments/footer :: footer}">Footer ở đây</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

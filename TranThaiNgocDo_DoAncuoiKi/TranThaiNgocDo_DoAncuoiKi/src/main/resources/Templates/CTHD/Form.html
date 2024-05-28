@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[[${pageTitle}]]</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/script/sidebar.js"></script>
+</head>
+<body>
+    <!-- Include your sidebar -->
+    <div th:replace="~{fragments/sidebar :: nav}"></div>
+
+    <!-- Main content container -->
+    <div class="container mt-5">
+        <h2>[[${pageTitle}]]</h2>
+        <div class="col-md-6">
+            <form th:action="@{/Admin/CTHD/Luu}" th:object="${cthd}" method="POST">
+                <!-- Hidden field for storing chi tiết hóa đơn ID -->
+                <input type="hidden" th:field="*{macthd}">
+                <!-- Hiển thị mã hóa đơn -->
+                <div class="form-group row">
+                    <label for="maHD" class="col-md-2 col-form-label">Mã hóa đơn:</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="maHD" th:field="*{HoaDon}" required>
+                            <option th:value="${hoaDon.maHD}" th:text="${hoaDon.maHD}"></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Hiển thị danh sách dịch vụ -->
+                <div class="form-group row">
+                    <label for="dichVu" class="col-md-2 col-form-label">Dịch Vụ:</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="dichVu" th:field="*{dichVu}" required>
+                            <option th:each="dv : ${dichVuList}" th:value="${dv.maDV}" th:text="${dv.tenDV}"></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Nhập số lượng -->
+                <div class="form-group row">
+                    <label for="soLuong" class="col-md-2 col-form-label">Số Lượng:</label>
+                    <div class="col-md-10">
+                        <input type="number" class="form-control" id="soLuong" th:field="*{soLuong}" required>
+                    </div>
+                </div>
+                
+                <!-- Nút Lưu và Hủy -->
+                <div class="form-group row">
+                    <div class="col-md-6 offset-md-2">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                        <a th:href="'/Admin/CTHD/Detail/'+${hoaDon.maHD}" class="btn btn-secondary">Hủy</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}">Footer ở đây</div>
+</body>
+</html>

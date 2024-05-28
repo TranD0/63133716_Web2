@@ -1,5 +1,6 @@
 package com.example.demo.Services;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,5 +16,6 @@ public interface HoaDonService {
     void delete(int Ma);
     Page<HoaDon> findAll(Integer soTrang);
 	List<HoaDon> search(LocalDateTime startDate, LocalDateTime endDate);
+	BigDecimal TongTienHD(LocalDateTime startDate, LocalDateTime endDate);
 	Page<HoaDon> search(LocalDateTime startDate, LocalDateTime endDate,Integer soTrang);
 }

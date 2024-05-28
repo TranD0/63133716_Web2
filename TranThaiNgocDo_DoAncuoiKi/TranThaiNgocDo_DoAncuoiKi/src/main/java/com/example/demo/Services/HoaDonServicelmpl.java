@@ -1,5 +1,6 @@
 package com.example.demo.Services;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -59,6 +60,11 @@ public class HoaDonServicelmpl implements HoaDonService  {
 		Integer ketThuc=((int) ((pageable.getOffset()+pageable.getPageSize())>list.size() ? list.size()  : pageable.getOffset()+ pageable.getPageSize()));
 		list=list.subList(batDau,ketThuc);
 		return new PageImpl<HoaDon>(list,pageable,this.search(startDate, endDate).size());
+    }
+
+    @Override
+    public BigDecimal TongTienHD(LocalDateTime startDate, LocalDateTime endDate) {
+      return donRepository.TinhHoaDon(startDate, endDate);
     }
 
 

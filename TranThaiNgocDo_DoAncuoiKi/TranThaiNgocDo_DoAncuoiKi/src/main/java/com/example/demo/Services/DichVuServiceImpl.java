@@ -20,6 +20,10 @@ public class DichVuServiceImpl implements DichVuService{
     public List<DichVu> getAllDichVu() {
         return dichVuRepository.findAll();
     }
+    @Override
+    public List<DichVu> getAllCon() {
+       return dichVuRepository.dichVucon();
+    }
 
     @Override
     public DichVu getDichVuBYID(int MaDV) {
@@ -42,7 +46,7 @@ public class DichVuServiceImpl implements DichVuService{
 
     @Override
     public Page<DichVu> findAll(Integer soTrang) {
-     	Pageable pageable = PageRequest.of(soTrang - 1, 2);
+     	Pageable pageable = PageRequest.of(soTrang - 1, 6);
        return this.dichVuRepository.findAll(pageable);
     }
 
@@ -54,11 +58,13 @@ public class DichVuServiceImpl implements DichVuService{
     @Override
     public Page<DichVu> search(String tuKhoa, Integer soTrang) {
         	List<DichVu> list = this.search(tuKhoa);
-		Pageable pageable = PageRequest.of(soTrang - 1, 2);
-		Integer batDau=(int) pageable.getOffset();
-		Integer ketThuc=((int) ((pageable.getOffset()+pageable.getPageSize())>list.size() ? list.size()  : pageable.getOffset()+ pageable.getPageSize()));
-		list=list.subList(batDau,ketThuc);
-		return new PageImpl<DichVu>(list,pageable,this.search(tuKhoa).size());
+        Pageable pageable = PageRequest.of(soTrang - 1, 6);
+        Integer batDau=(int) pageable.getOffset();
+        Integer ketThuc=((int) ((pageable.getOffset()+pageable.getPageSize())>list.size() ? list.size()  : pageable.getOffset()+ pageable.getPageSize()));
+        list=list.subList(batDau,ketThuc);
+        return new PageImpl<DichVu>(list,pageable,this.search(tuKhoa).size());
     }
+
+    
     
 }

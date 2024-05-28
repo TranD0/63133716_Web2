@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Models.DatPhong;
@@ -33,26 +36,28 @@ public class DatPhongServicelmpl implements DatPhongService{
 
     @Override
     public void delete(int madp) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+       datPhongRepository.deleteById(madp);
     }
 
     @Override
     public Page<DatPhong> findAll(Integer soTrang) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+       	Pageable pageable = PageRequest.of(soTrang - 1, 6);
+       return this.datPhongRepository.findAll(pageable);
     }
 
     @Override
     public List<DatPhong> search(String tuKhoa) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+        return this.datPhongRepository.search(tuKhoa);	
     }
 
     @Override
     public Page<DatPhong> search(String tuKhoa, Integer soTrang) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+       	List<DatPhong> list = this.search(tuKhoa);
+        Pageable pageable = PageRequest.of(soTrang - 1, 6);
+        Integer batDau=(int) pageable.getOffset();
+        Integer ketThuc=((int) ((pageable.getOffset()+pageable.getPageSize())>list.size() ? list.size()  : pageable.getOffset()+ pageable.getPageSize()));
+        list=list.subList(batDau,ketThuc);
+        return new PageImpl<DatPhong>(list,pageable,this.search(tuKhoa).size());
     }
     
 }

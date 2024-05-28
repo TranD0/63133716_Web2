@@ -46,9 +46,9 @@
                 <td th:text="${p.madp}"></td>
                 <td>
                     <a type="button" class="btn btn-warning mr-2 mb-2" th:href="@{'/Admin/Phong/Sua/'+${p.maP}}">Sửa</a>
-                    <form th:action="@{/Admin/Phong/TinhTien}" method="post">
+                    <form th:action="@{/Admin/HoaDon/saveHoaDon}" method="post">
                         <input type="hidden" name="maP" th:value="${p.maP}" />
-                        <button type="submit" class="btn btn-success mr-2 mb-2">Tính tiền</button>
+                        <button type="submit" class="btn btn-success mr-2 mb-2"th:disabled="${p.tinhTrang != 'Trống'}">Tính tiền</button>
                     </form>
                     <a type="button" class="btn btn-danger mb-2" th:href="@{'/Admin/Phong/Xoa/' + ${p.maP}}" onclick="return confirm('Bạn chắc chắn muốn xóa chứ?')">Xóa</a>
                 </td>

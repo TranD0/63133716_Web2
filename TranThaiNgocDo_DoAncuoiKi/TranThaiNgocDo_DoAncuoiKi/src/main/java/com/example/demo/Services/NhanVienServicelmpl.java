@@ -76,8 +76,8 @@ public class NhanVienServicelmpl implements NhanVienService{
       if (nhanViens == null) {
       { String hashedPassword = BCrypt.hashpw("123", BCrypt.gensalt());
         NhanVien nVien = new NhanVien();
-        nVien.setHo(tuKhoa);
-        nVien.setTen(tuKhoa);
+        nVien.setHo("ad");
+        nVien.setTen("min");
         nVien.setEmail(tuKhoa);
         nVien.setSdt("123456789");
         nVien.setAnhNV("cow.jpg");

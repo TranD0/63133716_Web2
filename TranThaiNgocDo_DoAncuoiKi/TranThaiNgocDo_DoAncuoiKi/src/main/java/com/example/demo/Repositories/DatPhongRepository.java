@@ -16,6 +16,8 @@ public interface DatPhongRepository extends JpaRepository<DatPhong, Integer> {
     "FROM DatPhong d JOIN d.malp l " +
     "WHERE d.madp = :madp")
 BigDecimal tongTien(@Param("madp") int madp);
-@Query("SELECT dp FROM DatPhong dp WHERE dp.tinhTrang = false")
-List<DatPhong> findByTinhTrang();
+    @Query("SELECT dp FROM DatPhong dp WHERE dp.tinhTrang = false")
+    List<DatPhong> findByTinhTrang();
+      @Query("SELECT l FROM DatPhong l WHERE l.sdt LIKE %?1%")
+    List<DatPhong> search(String tuKhoa);
 }

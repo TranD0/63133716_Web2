@@ -1,4 +1,5 @@
 package com.example.demo.Repositories;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,6 +15,10 @@ import com.example.demo.Models.HoaDon;
 public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
      @Query("SELECT h FROM HoaDon h WHERE h.madp = :datPhong")
     HoaDon findByDatPhong(@Param("datPhong") DatPhong datPhong);
-    @Query("SELECT l FROM HoaDon l WHERE l.thoigiantao >= ?1 AND l.thoigiantao <= ?2")
-List<HoaDon> searchByDateTimeRange(LocalDateTime startDate, LocalDateTime endDate);
+    @Query("SELECT l FROM HoaDon l WHERE l.ThoiGianTao BETWEEN :startDate AND :endDate")
+    List<HoaDon> searchByDateTimeRange(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+
+    @Query("SELECT SUM(l.tongTien) FROM HoaDon l WHERE l.ThoiGianTao BETWEEN :startDate AND :endDate")
+    BigDecimal TinhHoaDon(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+    
 }

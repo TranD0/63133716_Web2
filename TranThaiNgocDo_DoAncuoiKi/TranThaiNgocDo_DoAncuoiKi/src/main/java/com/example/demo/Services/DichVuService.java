@@ -10,6 +10,7 @@ import com.example.demo.Models.DichVu;
 @Service
 public interface DichVuService {
     public List<DichVu> getAllDichVu();
+	public List<DichVu> getAllCon();
 	public DichVu getDichVuBYID(int MaDV);
 	void addDichVu(DichVu DichVu);
     void deleteDichVu(int MaDV);
